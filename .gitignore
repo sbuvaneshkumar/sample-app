@@ -3,3 +3,4 @@
 .terraform
 **/errored.tfstate*
 **/terraform.tfstate.backup
+**/.terraform.lock.hcl
