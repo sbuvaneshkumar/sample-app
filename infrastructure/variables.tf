@@ -3,3 +3,5 @@ variable "app_name" {
 }
 
 variable "environment" {}
+
+variable "app_image_tag" {}

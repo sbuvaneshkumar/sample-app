@@ -14,7 +14,7 @@ resource "aws_ecs_task_definition" "main" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn 
   container_definitions = jsonencode([{
     name        = var.app_name
-    image       = join("", [var.ecr_repo_url, ":latest"])
+    image       = join("", [var.ecr_repo_url, ":",var.app_image_tag])
     essential   = true
     portMappings = [{
       protocol      = "tcp"
@@ -47,6 +47,6 @@ resource "aws_ecs_service" "main" {
  }
 
  lifecycle {
-   ignore_changes = [task_definition, desired_count]
+   ignore_changes = [desired_count]
  }
 }

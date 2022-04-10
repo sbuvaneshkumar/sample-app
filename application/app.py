@@ -8,4 +8,4 @@ def simple_app():
 
 @app.route("/version")
 def ver():
-    return "<p>Version: 1.0.0-alpha</p>"
+    return "<p>Version: 1.0.2-alpha</p>"
