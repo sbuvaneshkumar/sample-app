@@ -1,0 +1,5 @@
+# Ignore terraform binary and state files
+**/terraform.tfstate
+.terraform
+**/errored.tfstate*
+**/terraform.tfstate.backup
