@@ -73,12 +73,12 @@ $ terraform apply -var=environment=dev -var=app_image_tag=v2
 4. Once the execution is completed, review the version by hitting `/version` endpoint in ALB URL. It should be printing the new version now.
 ## Things to keep in mind when deploying in production 
 1. The image build and push steps should be part of the CI/CD process, using tools such as Jenkins or GitHub Actions.
-2. Use a dedicated directory for each environment under `sample-app/infrastructure/<environment-folder>`
+2. Use a dedicated directory for each environment under `sample-app/infrastructure/environments/<environment-folder-name (e.g dev/stage/prod etc)>`
 3. Use tools such as Prometheus, Grafana to monitor and visualize the key metrics for the containers as it scales
 4. Configure alerts to send a notification to email or slack to notify the team when the service fails to serve requests
 5. Leverage the service autoscaling feature in ECS to autoscale the containers as per the workloads 
 6. Use logging solution such as Elastic to store all the container logs in a centralized location, 
-7. The variables for the environment (dev/stage/prod) and the version of the image can be passed as parameters for the CI/CD tools
+7. The variables for the environment (dev/stage/prod) and the version of the image can be passed as parameters to CI/CD tools
 9. Security-hardening:
     * Use tools such as [checkov](https://github.com/bridgecrewio/checkov) for security scanning to find common vulnerabilities and misconfiguration in Terraform codebase
     * Use scanning option available in ECR to detect vulnerabilities in image or use tools such as [clair](https://quay.github.io/clair/) if the desired environment is {multi,hybrid}-cloud.
