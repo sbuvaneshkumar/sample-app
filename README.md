@@ -1,4 +1,4 @@
-## Setup
+w## Setup
 This repo helps to build a Docker image for a simple webapp based on Python Flask framework and deploys to ECS Fargate.
 
 The application has two endponts - `/` and `/version`.
@@ -71,7 +71,11 @@ $ terraform plan -var=environment=dev -var=app_image_tag=v2
 $ terraform apply -var=environment=dev -var=app_image_tag=v2
 ```
 4. Once the execution is completed, review the version by hitting `/version` endpoint in ALB URL. It should be printing the new version now.
-
-## Things to keep in mind for deploying in production 
-1. The image build and push steps should be in CI/CD process, using tools such as Jenkins or GitHub Actions
-2. The app container runs as root user,it could be configured to run as non-root user for security-hardening
+## Things to keep in mind when deploying in production 
+1. The image build and push steps should be part of the CI/CD process, using tools such as Jenkins or GitHub Actions.
+2. The variables for the environment (dev/stage/prod) and the version of the image can be passed as parameters for the CI/CD tools
+3. Security-hardening:
+    * Use tools such as [checkov](https://github.com/bridgecrewio/checkov) for security scanning to find common vulnerabilities and misconfiguration in Terraform codebase
+    * Use scanning option available in ECR to detect vulnerabilities in image or use tools such as [clair](https://quay.github.io/clair/) if the desired environment is {multi,hybrid}-cloud.
+    * The default user for the container should be a non-root user
+4. As we scale with the number of applications, it would be nicer to have them moved to EKS as there will be much more features that can be achieved via container orchestration tools (E.g. Kubernetes) than in ECS
