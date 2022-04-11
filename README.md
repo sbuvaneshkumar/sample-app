@@ -1,4 +1,4 @@
-w## Setup
+## Setup
 This repo helps to build a Docker image for a simple webapp based on Python Flask framework and deploys to ECS Fargate.
 
 The application has two endponts - `/` and `/version`.
