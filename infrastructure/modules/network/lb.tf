@@ -43,32 +43,33 @@ resource "aws_alb_listener" "http" {
       target_group_arn = aws_alb_target_group.main.id
       type             = "forward"
   }
-  # default_action {
-  #   type = "redirect"
-
-  #   redirect {
-  #     port        = 443
-  #     protocol    = "HTTPS"
-  #     status_code = "HTTP_301"
-  #   }
-  # }
+## To enable HTTPS: uncomment following lines and comment out above 3 lines, 
+#   default_action {
+#   type = "redirect"
+#   
+#   redirect {
+#     port        = 443
+#     protocol    = "HTTPS"
+#     status_code = "HTTP_301"
+#   }
+# }
 }
 
-# Redirect traffic to target group
+## Redirect traffic to target group
 # resource "aws_alb_listener" "https" {
 #     load_balancer_arn = aws_lb.main.id
 #     port              = 443
 #     protocol          = "HTTPS"
-
+# 
 #     ssl_policy        = "ELBSecurityPolicy-2016-08"
-#     certificate_arn   = var.alb_tls_cert_arn
-
+#     certificate_arn   =  aws_acm_certificate_validation.buvan.certificate_arn
+# 
 #     default_action {
 #         target_group_arn = aws_alb_target_group.main.id
 #         type             = "forward"
 #     }
 # }
-
+# 
 output "aws_alb_target_group_arn" {
   value = aws_alb_target_group.main.arn
 }
