@@ -79,8 +79,9 @@ $ terraform apply -var=environment=dev -var=app_image_tag=v2
 5. Leverage the service autoscaling feature in ECS to autoscale the containers as per the workloads 
 6. Use logging solution such as Elastic to store all the container logs in a centralized location, 
 7. The variables for the environment (dev/stage/prod) and the version of the image can be passed as parameters for the CI/CD tools
-8. Security-hardening:
+9. Security-hardening:
     * Use tools such as [checkov](https://github.com/bridgecrewio/checkov) for security scanning to find common vulnerabilities and misconfiguration in Terraform codebase
     * Use scanning option available in ECR to detect vulnerabilities in image or use tools such as [clair](https://quay.github.io/clair/) if the desired environment is {multi,hybrid}-cloud.
     * The default user for the container should be a non-root user
-9. As we scale with the number of applications, it would be nicer to have them moved to EKS as there will be much more features (such as service discovery, vendor neutrality etc) that can be achieved via container orchestration tools (E.g. Kubernetes) than in ECS
+    * Use tools such as Sonarqube to identify the vulnerabilities within the application stack to identify and fix the security holes in the codebase
+10. As we scale with the number of applications, it would be nicer to have them moved to EKS as there will be much more features (such as service discovery, vendor neutrality etc) that can be achieved via container orchestration tools (E.g. Kubernetes) than in ECS
